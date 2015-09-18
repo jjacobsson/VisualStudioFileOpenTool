@@ -24,13 +24,16 @@ namespace VisualStudioFileOpenTool
 					String filename = args[1];
 
 					int fileline;
+                    int filecol;
 					int.TryParse(args[2], out fileline);
+                    int.TryParse(args[3], out filecol);
 
 					EnvDTE80.DTE2 dte2;
 					dte2 = (EnvDTE80.DTE2)System.Runtime.InteropServices.Marshal.GetActiveObject(vsString);
 					dte2.MainWindow.Activate();
 					EnvDTE.Window w = dte2.ItemOperations.OpenFile(filename, EnvDTE.Constants.vsViewKindTextView);
-					((EnvDTE.TextSelection) dte2.ActiveDocument.Selection).GotoLine(fileline, true);
+					((EnvDTE.TextSelection) dte2.ActiveDocument.Selection).MoveToLineAndOffset(fileline, filecol, false);
+                    w.Activate();
 				}
 				else
 				{
@@ -48,7 +51,7 @@ namespace VisualStudioFileOpenTool
 			var versions = new List<int>() { 2, 3, 5, 8, 10, 12, 13 };
 			string s = "Trying to open specified file at spicified line in active Visual Studio \n\n";
 
-			s += "usage: <version> <file path> <line number> \n\n";
+			s += "usage: <version> <file path> <line number> <column number>\n\n";
 
 			s += String.Format("{0} {1,21} \n", "Visual Studio version", "value");
 			foreach (int version in versions)
