@@ -17,12 +17,14 @@ Tool that trying open specified file at spicified line in active Visual Studio
 
 GrepWin settings:
 
-	VisualStudioFileOpenTool.exe 12 %path% %line%
+	VisualStudioFileOpenTool.exe 12 %path% %line% 0
 	
 Beyond Compare settings(Options - Open With - Command line):
 	
-	VisualStudioFileOpenTool.exe 12 %f %l
+	VisualStudioFileOpenTool.exe 12 %f %l 0
 	
+(I don't GrepWin or Beyond Compare so I don't know if column number makes sense.)
+
 Inspired by http://stackoverflow.com/questions/350323/open-a-file-in-visual-studio-at-a-specific-line-number
 
 
