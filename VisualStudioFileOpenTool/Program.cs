@@ -34,6 +34,7 @@ namespace VisualStudioFileOpenTool
 					EnvDTE.Window w = dte2.ItemOperations.OpenFile(filename, EnvDTE.Constants.vsViewKindTextView);
 					((EnvDTE.TextSelection) dte2.ActiveDocument.Selection).MoveToLineAndOffset(fileline, filecol, false);
                     w.Activate();
+                    
 				}
 				else
 				{

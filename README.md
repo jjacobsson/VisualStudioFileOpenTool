@@ -3,11 +3,7 @@ VisualStudioFileOpenTool
 
 Tool that trying open specified file at spicified line in active Visual Studio   
 
-
-[Download binary](https://github.com/diimdeep/VisualStudioFileOpenTool/blob/master/VisualStudioFileOpenTool/bin/Release/VisualStudioFileOpenTool.exe)
-
-
-	usage: <version> <file path> <line number> 
+	usage: <version> <file path> <line number> <column number>
 
 	Visual Studio version                 value 
 	VisualStudio 2002                     2 
