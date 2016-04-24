@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace VisualStudioFileOpenTool
 {
+    internal abstract class EnvDTEConstants
+    {
+        public const string vsViewKindTextView = "{7651A703-06E5-11D1-8EBD-00A0C90F26EA}";
+    }
+
 	class Program
 	{
 		[STAThread]
@@ -31,7 +36,7 @@ namespace VisualStudioFileOpenTool
 					EnvDTE80.DTE2 dte2;
 					dte2 = (EnvDTE80.DTE2)System.Runtime.InteropServices.Marshal.GetActiveObject(vsString);
 					dte2.MainWindow.Activate();
-					EnvDTE.Window w = dte2.ItemOperations.OpenFile(filename, EnvDTE.Constants.vsViewKindTextView);
+					EnvDTE.Window w = dte2.ItemOperations.OpenFile(filename, EnvDTEConstants.vsViewKindTextView);
 					((EnvDTE.TextSelection) dte2.ActiveDocument.Selection).MoveToLineAndOffset(fileline, filecol, false);
                     w.Activate();
                     
@@ -49,7 +54,7 @@ namespace VisualStudioFileOpenTool
 
 		public static string GetHelpMessage()
 		{
-			var versions = new List<int>() { 2, 3, 5, 8, 10, 12, 13 };
+			var versions = new List<int>() { 2, 3, 5, 8, 10, 12, 13, 15 };
 			string s = "Trying to open specified file at spicified line in active Visual Studio \n\n";
 
 			s += "usage: <version> <file path> <line number> <column number>\n\n";
@@ -71,7 +76,9 @@ namespace VisualStudioFileOpenTool
 			//  Source: http://www.mztools.com/articles/2011/MZ2011011.aspx
 			switch (visualStudioVersionNumber)
 			{
-				case 13:
+                case 15:
+                    return "VisualStudio.DTE.14.0";
+                case 13:
 					return "VisualStudio.DTE.12.0";
 				case 12:
 					return "VisualStudio.DTE.11.0";
