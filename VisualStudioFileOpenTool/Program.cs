@@ -59,13 +59,15 @@ namespace VisualStudioFileOpenTool
 
 			s += "usage: <version> <file path> <line number> <column number>\n\n";
 
-			s += String.Format("{0} {1,21} \n", "Visual Studio version", "value");
+			
+			s += String.Format("{0} {1,17} \n", "Visual Studio version", "value");
+			s += String.Format("{0} {1,25} \n", "Latest Available", "1");
 			foreach (int version in versions)
 			{
 				s += String.Format("{0}{1:D2} ", "VisualStudio 20", version);
 				s += String.Format("{0,21} \n", version);
 			}
-
+			
 			s += "";
 
 			return s;
@@ -92,6 +94,8 @@ namespace VisualStudioFileOpenTool
 					return "VisualStudio.DTE.7.1";
 				case 2:
 					return "VisualStudio.DTE.7";
+				case 1:
+					return "VisualStudio.DTE";
 			}
 
 			MessageBox.Show("Don't know this Visual Studio version. \n\n" + GetHelpMessage());
